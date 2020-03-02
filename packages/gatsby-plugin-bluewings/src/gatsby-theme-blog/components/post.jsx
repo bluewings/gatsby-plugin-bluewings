@@ -5,9 +5,7 @@ import { DiscussionEmbed } from 'disqus-react';
 import PostFooter from 'gatsby-theme-blog/src/components/post-footer';
 import Layout from 'gatsby-theme-blog/src/components/layout';
 import SEO from 'gatsby-theme-blog/src/components/seo';
-import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
-import mdxComponents from './mdx-components';
 import Translations from './translations';
 import Footer from 'gatsby-theme-blog/src/components/home-footer';
 
@@ -44,9 +42,7 @@ const Post = ({ data, location, previous, next, pageContext }) => {
           editUrl={editUrl}
           langKeyDefault={langKeyDefault}
         />
-        <MDXProvider components={mdxComponents}>
-          <MDXRenderer>{post.body}</MDXRenderer>
-        </MDXProvider>
+        <MDXRenderer>{post.body}</MDXRenderer>
       </main>
       <PostFooter {...{ previous, next }} editUrl={editUrl} />
       {disqusShortname && (
