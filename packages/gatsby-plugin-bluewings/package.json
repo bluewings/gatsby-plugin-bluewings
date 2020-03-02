@@ -1,0 +1,79 @@
+{
+  "name": "gatsby-plugin-bluewings",
+  "version": "0.3.33",
+  "author": {
+    "name": "Sung Won Cha",
+    "email": "mygenie3@naver.com"
+  },
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "jsnext:main": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bluewings/gatsby-plugin-bluewings.git",
+    "directory": "packages/gatsby-plugin-bluewings"
+  },
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "dependencies": {
+    "@emotion/core": "^10.0.27",
+    "@mdx-js/tag": "^0.20.3",
+    "@types/react-json-tree": "^0.6.11",
+    "classnames": "^2.2.6",
+    "deepmerge": "^4.2.2",
+    "disqus-react": "^1.0.7",
+    "folktale": "^2.3.2",
+    "gatsby-plugin-google-fonts": "^1.0.1",
+    "gatsby-plugin-mdx": "^1.0.73",
+    "gatsby-plugin-sass": "^2.1.29",
+    "gatsby-plugin-typescript": "^2.1.27",
+    "gatsby-remark-copy-linked-files": "^2.1.37",
+    "gatsby-remark-images": "^3.1.44",
+    "gatsby-remark-smartypants": "^2.1.21",
+    "gatsby-theme-waves": "^0.1.5",
+    "intersection-observer": "^0.7.0",
+    "parse-numeric-range": "0.0.2",
+    "ptz-i18n": "^1.0.0",
+    "ramda": "^0.27.0",
+    "react-json-tree": "^0.11.2",
+    "react-use": "^13.26.2",
+    "remark-slug": "^5.1.2",
+    "scrollama": "^2.2.0",
+    "tailwindcss": "^1.2.0",
+    "typeface-montserrat": "0.0.75"
+  },
+  "peerDependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-image": "^2.0.4",
+    "@types/classnames": "^2.2.9",
+    "@types/lodash-es": "^4.17.3",
+    "@types/react": "^16.9.22",
+    "@types/react-dom": "^16.9.5",
+    "copy": "^0.3.2",
+    "node-sass": "^4.13.1",
+    "prettier": "^1.19.1",
+    "rollup": "^1.31.1",
+    "rollup-plugin-postcss": "^2.1.1",
+    "rollup-plugin-pug-as-jsx": "^1.0.9",
+    "rollup-plugin-typescript2": "^0.26.0",
+    "typescript": "^3.8.2"
+  },
+  "scripts": {
+    "format": "prettier --write '{gatsby-*.js,src/**/*.{js,jsx,ts,tsx,json,css,scss},content/**/*.{js,jsx,ts,tsx,json,css,scss}}'",
+    "prestart": "rm -rf ./dist && rm -rf tsconfig.tsbuildinfo && cd ./src && copy ./tailwind.* ../dist ",
+    "start": "rollup -c --watch"
+  },
+  "files": [
+    "src",
+    "dist",
+    "gatsby-*",
+    "README.md"
+  ],
+  "license": "MIT"
+}

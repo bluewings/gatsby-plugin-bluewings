@@ -1,0 +1,21 @@
+{
+  "name": "gatsby-starter-blog-theme",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "develop": "gatsby develop",
+    "start": "gatsby develop",
+    "build": "gatsby build",
+    "deploy": "gatsby build --prefix-paths && gh-pages -d public -r https://github.com/bluewings/gatsby-plugin-bluewings.git",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "gatsby": "^2.19.21",
+    "gatsby-plugin-bluewings": "^0.3.33",
+    "gatsby-theme-blog": "^1.3.7",
+    "gh-pages": "^2.2.0",
+    "node-sass": "^4.13.1",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  }
+}
