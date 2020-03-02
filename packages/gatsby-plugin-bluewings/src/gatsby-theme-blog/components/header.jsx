@@ -5,10 +5,8 @@ import { css, Styled } from 'theme-ui';
 import Switch from 'gatsby-theme-blog/src/components/switch';
 import Bio from 'gatsby-theme-blog/src/components/bio';
 
-const rootPath = `${__PATH_PREFIX__}/`;
-
-const Title = ({ children, location }) => {
-  if (location.pathname === rootPath) {
+const Title = ({ children, indexPage }) => {
+  if (indexPage) {
     return (
       <Styled.h1
         css={css({
@@ -57,7 +55,7 @@ const Title = ({ children, location }) => {
   }
 };
 
-export default ({ children, title, maxWidth, ...props }) => (
+export default ({ children, title, maxWidth, indexPage, ...props }) => (
   <header>
     <div
       css={css({
@@ -75,11 +73,13 @@ export default ({ children, title, maxWidth, ...props }) => (
           my: 0,
         })}
       >
-        <Title {...props}>{title}</Title>
+        <Title {...props} indexPage={indexPage}>
+          {title}
+        </Title>
         {children}
         <Switch />
       </div>
-      {props.location.pathname === rootPath && <Bio />}
+      {indexPage && <Bio />}
     </div>
   </header>
 );

@@ -7,7 +7,7 @@ import SEO from 'gatsby-theme-blog/src/components/seo';
 import Footer from 'gatsby-theme-blog/src/components/home-footer';
 
 const Posts = ({ location, posts, siteTitle, socialLinks }) => (
-  <Layout location={location} title={siteTitle}>
+  <Layout location={location} title={siteTitle} indexPage={true}>
     <main>
       {posts.map(({ node }) => {
         const title = node.title || node.slug;

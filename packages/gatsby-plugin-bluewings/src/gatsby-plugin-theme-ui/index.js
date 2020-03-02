@@ -80,6 +80,13 @@ let theme = merge(blogTheme, {
 
 theme = merge(theme, wavesTheme);
 
+theme.styles.waves.default.ScrollerProgress = {
+  ...theme.styles.waves.default.ScrollerProgress,
+  backgroundColor: 'text',
+  left: ['-21px', `${-21 + 5.25 / 2}px`],
+  width: '5.250px !important',
+};
+
 theme = {
   ...theme,
   sizes: { container: 630 },
