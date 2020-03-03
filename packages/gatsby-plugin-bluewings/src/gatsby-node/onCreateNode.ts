@@ -56,6 +56,12 @@ const onCreateNode = ({ node, actions, getNode }: any, pluginOptions: any) => {
     return Result.Error('Skiping file type: ' + node.internal.type);
   };
 
+  if (node.internal.type.toLowerCase().search(/mdx/) !== -1) {
+    if (node.frontmatter && !node.frontmatter.max_width) {
+      node.frontmatter.max_width = '';
+    }
+  }
+
   return getFilePath(node)
     .map((filePath: string) =>
       chain((isInPaths: boolean) => {

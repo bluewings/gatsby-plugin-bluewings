@@ -29,7 +29,7 @@ const Post = ({ data, location, previous, next, pageContext }) => {
           css={css({
             fontSize: 1,
             mt: -2,
-            mb: 3,
+            mb: 4,
             fontFamily: `Montserrat_SemiBold, 'Apple SD Gothic NEO', helvetica, sans-serif`,
           })}
         >

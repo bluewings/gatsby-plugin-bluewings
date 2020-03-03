@@ -21,6 +21,24 @@ let theme = merge(blogTheme, {
       margin: 0,
       padding: 0,
     },
+    h1: {
+      mt: 4,
+    },
+    h2: {
+      mt: 4,
+    },
+    h3: {
+      mt: 4,
+    },
+    h4: {
+      mt: 4,
+    },
+    h5: {
+      mt: 4,
+    },
+    h6: {
+      mt: 4,
+    },
     a: {
       color: '#007acc',
       textDecoration: 'none',
