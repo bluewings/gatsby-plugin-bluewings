@@ -12,11 +12,11 @@ import Image from 'gatsby-image';
 import { Styled, css, Flex } from 'theme-ui';
 import BioContent from 'gatsby-theme-blog/src/components/bio-content';
 
-const Bio = ({ post }) => {
+const Bio = ({ post, langKey }) => {
   const data = useStaticQuery(bioQuery);
   const {
     site: {
-      siteMetadata: { author },
+      siteMetadata: { author, description },
     },
     avatar,
   } = data;
@@ -48,7 +48,7 @@ const Bio = ({ post }) => {
         />
       )}
       <Styled.div>
-        <BioContent />
+        <BioContent author={author} description={description} langKey={langKey} />
       </Styled.div>
     </Flex>
   );
@@ -59,6 +59,7 @@ const bioQuery = graphql`
     site {
       siteMetadata {
         author
+        description
       }
     }
     avatar: file(absolutePath: { regex: "/avatar.(jpeg|jpg|gif|png)/" }) {

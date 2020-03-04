@@ -47,7 +47,7 @@ const Post = ({ data, location, previous, next, pageContext }) => {
       </main>
       <PostFooter {...{ previous, next }} editUrl={editUrl} />
       {disqusShortname && <DiscussionEmbed shortname={disqusShortname} config={{ identifier: slugId, title: title }} />}
-      <Footer socialLinks={socialLinks} marginTop={0} />
+      <Footer socialLinks={socialLinks} marginTop={0} langKey={langKey} />
     </Layout>
   );
 };

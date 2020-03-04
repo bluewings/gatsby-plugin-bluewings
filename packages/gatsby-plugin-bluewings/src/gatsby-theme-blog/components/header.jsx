@@ -84,6 +84,9 @@ export default ({ children, title, maxWidth, indexPage, ...props }) => {
     const { langKey, langKeyDefault } = props.pageContext || {};
     return langKey === langKeyDefault ? '/' : `/${langKey}/`;
   }, [title, props.pageContext]);
+
+  const { langKey } = props.pageContext || {};
+
   return (
     <header>
       <div
@@ -106,7 +109,7 @@ export default ({ children, title, maxWidth, indexPage, ...props }) => {
           {children}
           <Switch />
         </div>
-        {indexPage && <Bio />}
+        {indexPage && <Bio langKey={langKey} />}
       </div>
     </header>
   );
