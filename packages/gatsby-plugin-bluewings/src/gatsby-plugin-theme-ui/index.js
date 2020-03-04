@@ -5,6 +5,7 @@ import presetOceanicNext from '@theme-ui/prism/presets/oceanic-next.json';
 import presetPrism from '@theme-ui/prism/presets/prism.json';
 import merge from 'deepmerge';
 import colors from './colors';
+import waves from './waves';
 
 let theme = merge(blogTheme, {
   colors,
@@ -38,6 +39,10 @@ let theme = merge(blogTheme, {
     },
     h6: {
       mt: 4,
+    },
+    hr: {
+      mt: 4,
+      mb: 4,
     },
     a: {
       color: '#007acc',
@@ -104,6 +109,8 @@ theme.styles.waves.default.ScrollerProgress = {
   left: ['-21px', `${-21 + 5.25 / 2}px`],
   width: '5.250px !important',
 };
+
+theme.styles.waves = waves(theme.styles.waves);
 
 theme = {
   ...theme,

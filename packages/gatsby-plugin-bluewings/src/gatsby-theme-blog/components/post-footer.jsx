@@ -13,7 +13,7 @@ const Footer = ({ previous, next, editUrl }) => (
         </Styled.a>
       </Styled.p>
     )}
-    <Styled.hr />
+    <Styled.hr css={css({ mt: 3, mb: 3 })} />
     <Bio post={true} />
     {(previous || next) && (
       <Flex
