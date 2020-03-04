@@ -45,7 +45,7 @@ const Post = ({ data, location, previous, next, pageContext }) => {
         />
         <MDXRenderer>{post.body}</MDXRenderer>
       </main>
-      <PostFooter {...{ previous, next }} editUrl={editUrl} />
+      <PostFooter {...{ previous, next }} editUrl={editUrl} pageContext={pageContext} />
       {disqusShortname && <DiscussionEmbed shortname={disqusShortname} config={{ identifier: slugId, title: title }} />}
       <Footer socialLinks={socialLinks} marginTop={0} langKey={langKey} />
     </Layout>

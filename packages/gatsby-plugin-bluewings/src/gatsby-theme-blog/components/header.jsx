@@ -55,13 +55,12 @@ const Title = ({ children, indexPage, rootPath }) => {
   }
 };
 
-export default ({ children, title, maxWidth, indexPage, ...props }) => {
+export default ({ children, title, maxWidth, indexPage, langKey, langKeyDefault, ...props }) => {
   const _title = useMemo(() => {
     if (typeof title === 'string') {
       return title;
     }
     if (Array.isArray(title)) {
-      const { langKey, langKeyDefault } = props.pageContext || {};
       const titles = title
         .filter((e) => e.length === 2)
         .reduce(
@@ -78,14 +77,12 @@ export default ({ children, title, maxWidth, indexPage, ...props }) => {
       return titles.local || titles.default;
     }
     return '';
-  }, [title, props.pageContext]);
+  }, [title, langKey, langKeyDefault]);
 
   const rootPath = useMemo(() => {
     const { langKey, langKeyDefault } = props.pageContext || {};
     return langKey === langKeyDefault ? '/' : `/${langKey}/`;
   }, [title, props.pageContext]);
-
-  const { langKey } = props.pageContext || {};
 
   return (
     <header>

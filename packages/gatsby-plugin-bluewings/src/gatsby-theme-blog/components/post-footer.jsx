@@ -4,7 +4,7 @@ import { Link } from 'gatsby';
 import { css, Styled, Flex } from 'theme-ui';
 import Bio from 'gatsby-theme-blog/src/components/bio';
 
-const Footer = ({ previous, next, editUrl, langKey, langKeyDefault }) => (
+const Footer = ({ previous, next, editUrl, langKey, langKeyDefault, pageContext }) => (
   <footer css={css({ mt: 4, pt: 3 })}>
     {editUrl && (
       <Styled.p>
@@ -14,7 +14,7 @@ const Footer = ({ previous, next, editUrl, langKey, langKeyDefault }) => (
       </Styled.p>
     )}
     <Styled.hr css={css({ mt: 3, mb: 3 })} />
-    <Bio post={true} langKey={langKey} langKeyDefault={langKeyDefault} />
+    <Bio post={true} langKey={langKey || (pageContext && pageContext.langKey)} langKeyDefault={langKeyDefault} />
     {(previous || next) && (
       <Flex
         as="ul"
