@@ -1,5 +1,5 @@
 // https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-theme-blog/src/components/post.js
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Styled, css } from 'theme-ui';
 import { DiscussionEmbed } from 'disqus-react';
 import PostFooter from 'gatsby-theme-blog/src/components/post-footer';
@@ -20,8 +20,9 @@ const Post = ({ data, location, previous, next, pageContext }) => {
   const { translations, editOnGithub, disqusShortname, langKeyDefault } = pageContext || {};
   const { max_width } = (post.parent && post.parent.frontmatter) || {};
   const editUrl = editOnGithub && filePath && `${editOnGithub}${filePath}`;
+  const slugId = useMemo(() => post.slug.replace(new RegExp('^/' + langKey + '/'), '/'), [post.slug, langKey]);
   return (
-    <Layout location={location} title={title} langKey={langKey} maxWidth={max_width}>
+    <Layout location={location} title={title} langKey={langKey} pageContext={pageContext} maxWidth={max_width}>
       <SEO title={post.title} description={post.excerpt} />
       <main>
         <Styled.h1 css={css({ mt: 4 })}>{post.title}</Styled.h1>
@@ -45,9 +46,7 @@ const Post = ({ data, location, previous, next, pageContext }) => {
         <MDXRenderer>{post.body}</MDXRenderer>
       </main>
       <PostFooter {...{ previous, next }} editUrl={editUrl} />
-      {disqusShortname && (
-        <DiscussionEmbed shortname={disqusShortname} config={{ identifier: post.id, title: title }} />
-      )}
+      {disqusShortname && <DiscussionEmbed shortname={disqusShortname} config={{ identifier: slugId, title: title }} />}
       <Footer socialLinks={socialLinks} marginTop={0} />
     </Layout>
   );

@@ -85,6 +85,7 @@ const createPages = async ({ graphql, actions, reporter }: any, themeOptions: an
           translations: translationsDict[getOrigin(slug, langKey)] || [],
           editOnGithub,
           disqusShortname,
+          langKey,
           langKeyDefault,
         },
       });
@@ -97,6 +98,7 @@ const createPages = async ({ graphql, actions, reporter }: any, themeOptions: an
       component: PostsTemplate,
       context: {
         langKey,
+        langKeyDefault,
       },
     });
   });

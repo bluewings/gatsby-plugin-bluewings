@@ -6,8 +6,8 @@ import Layout from 'gatsby-theme-blog/src/components/layout';
 import SEO from 'gatsby-theme-blog/src/components/seo';
 import Footer from 'gatsby-theme-blog/src/components/home-footer';
 
-const Posts = ({ location, posts, siteTitle, socialLinks }) => (
-  <Layout location={location} title={siteTitle} indexPage={true}>
+const Posts = ({ location, posts, siteTitle, socialLinks, pageContext }) => (
+  <Layout location={location} title={siteTitle} indexPage={true} pageContext={pageContext}>
     <main>
       {posts.map(({ node }) => {
         const title = node.title || node.slug;

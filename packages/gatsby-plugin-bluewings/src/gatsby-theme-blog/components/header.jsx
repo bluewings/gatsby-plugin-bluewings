@@ -1,11 +1,11 @@
 // https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-theme-blog/src/components/header.js
-import React from 'react';
+import React, { useMemo } from 'react';
 import { Link } from 'gatsby';
 import { css, Styled } from 'theme-ui';
 import Switch from 'gatsby-theme-blog/src/components/switch';
 import Bio from 'gatsby-theme-blog/src/components/bio';
 
-const Title = ({ children, indexPage }) => {
+const Title = ({ children, indexPage, rootPath }) => {
   if (indexPage) {
     return (
       <Styled.h1
@@ -24,7 +24,7 @@ const Title = ({ children, indexPage }) => {
             boxShadow: `none`,
             textDecoration: `none`,
           })}
-          to={`/`}
+          to={rootPath}
         >
           {children}
         </Styled.a>
@@ -46,7 +46,7 @@ const Title = ({ children, indexPage }) => {
             textDecoration: `none`,
             color: 'text',
           })}
-          to={`/`}
+          to={rootPath}
         >
           {children}
         </Styled.a>
@@ -55,31 +55,59 @@ const Title = ({ children, indexPage }) => {
   }
 };
 
-export default ({ children, title, maxWidth, indexPage, ...props }) => (
-  <header>
-    <div
-      css={css({
-        maxWidth: maxWidth || `container`,
-        mx: `auto`,
-      })}
-    >
+export default ({ children, title, maxWidth, indexPage, ...props }) => {
+  const _title = useMemo(() => {
+    if (typeof title === 'string') {
+      return title;
+    }
+    if (Array.isArray(title)) {
+      const { langKey, langKeyDefault } = props.pageContext || {};
+      const titles = title
+        .filter((e) => e.length === 2)
+        .reduce(
+          (prev, [_langKey, _title]) => {
+            if (langKey === _langKey) {
+              return { ...prev, local: _title };
+            } else if (langKeyDefault === _langKey) {
+              return { ...prev, default: _title };
+            }
+            return prev;
+          },
+          { local: null, default: null },
+        );
+      return titles.local || titles.default;
+    }
+    return '';
+  }, [title, props.pageContext]);
+
+  const rootPath = useMemo(() => {
+    const { langKey, langKeyDefault } = props.pageContext || {};
+    return langKey === langKeyDefault ? '/' : `/${langKey}/`;
+  }, [title, props.pageContext]);
+  return (
+    <header>
       <div
         css={css({
-          display: `flex`,
-          justifyContent: `space-between`,
-
-          alignItems: `flex-start`,
-
-          my: 0,
+          maxWidth: maxWidth || `container`,
+          mx: `auto`,
         })}
       >
-        <Title {...props} indexPage={indexPage}>
-          {title}
-        </Title>
-        {children}
-        <Switch />
+        <div
+          css={css({
+            display: `flex`,
+            justifyContent: `space-between`,
+            alignItems: `flex-start`,
+            my: 0,
+          })}
+        >
+          <Title {...props} indexPage={indexPage} rootPath={rootPath}>
+            {_title}
+          </Title>
+          {children}
+          <Switch />
+        </div>
+        {indexPage && <Bio />}
       </div>
-      {indexPage && <Bio />}
-    </div>
-  </header>
-);
+    </header>
+  );
+};

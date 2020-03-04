@@ -3,7 +3,7 @@ import { css, useColorMode, Styled } from 'theme-ui';
 
 const SWITCH_SIZE = 60;
 
-function Switch() {
+function Switch({ border = false }) {
   const [colorMode, setColorMode] = useColorMode();
 
   const rotate = useRef(0);
@@ -21,6 +21,22 @@ function Switch() {
     setColorMode(isDark ? `light` : `dark`);
   };
 
+  const borderStyles = useMemo(
+    () =>
+      border
+        ? {
+            borderWidth: 1,
+            borderColor:
+              colorMode === 'dark'
+                ? 'var(--theme-ui-colors-muted,hsla(0,0%,100%,0.4))'
+                : 'var(--theme-ui-colors-muted,hsla(0,0%,0%,0.4))',
+            borderRadius: '0.25rem',
+            height: 32,
+          }
+        : { border: 'none' },
+    [border, colorMode],
+  );
+
   return (
     <div css={css({ height: 0 })}>
       <button
@@ -29,10 +45,10 @@ function Switch() {
           width: SWITCH_SIZE,
           height: SWITCH_SIZE / 2,
           padding: 0,
-          border: 'none',
           background: 'transparent',
           overflow: 'hidden',
           cursor: 'pointer',
+          ...borderStyles,
         })}
         onClick={toggleColorMode}
       >

@@ -1,3 +1,4 @@
+// https://github.com/gatsbyjs/gatsby/blob/master/packages/gatsby-theme-blog/src/gatsby-theme-blog-core/components/post.js
 import React from 'react';
 import Post from 'gatsby-theme-blog/src/components/post';
 
