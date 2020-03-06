@@ -4,6 +4,7 @@ import { Link } from 'gatsby';
 import { css, Styled } from 'theme-ui';
 import Switch from 'gatsby-theme-blog/src/components/switch';
 import Bio from 'gatsby-theme-blog/src/components/bio';
+import { getLocalText } from './util';
 
 const Title = ({ children, indexPage, rootPath }) => {
   if (indexPage) {
@@ -56,29 +57,6 @@ const Title = ({ children, indexPage, rootPath }) => {
 };
 
 export default ({ children, title, maxWidth, indexPage, langKey, langKeyDefault, ...props }) => {
-  const _title = useMemo(() => {
-    if (typeof title === 'string') {
-      return title;
-    }
-    if (Array.isArray(title)) {
-      const titles = title
-        .filter((e) => e.length === 2)
-        .reduce(
-          (prev, [_langKey, _title]) => {
-            if (langKey === _langKey) {
-              return { ...prev, local: _title };
-            } else if (langKeyDefault === _langKey) {
-              return { ...prev, default: _title };
-            }
-            return prev;
-          },
-          { local: null, default: null },
-        );
-      return titles.local || titles.default;
-    }
-    return '';
-  }, [title, langKey, langKeyDefault]);
-
   const rootPath = useMemo(() => {
     const { langKey, langKeyDefault } = props.pageContext || {};
     return langKey === langKeyDefault ? '/' : `/${langKey}/`;
@@ -101,12 +79,12 @@ export default ({ children, title, maxWidth, indexPage, langKey, langKeyDefault,
           })}
         >
           <Title {...props} indexPage={indexPage} rootPath={rootPath}>
-            {_title}
+            {getLocalText(title, props.pageContext)}
           </Title>
           {children}
           <Switch />
         </div>
-        {indexPage && <Bio langKey={langKey} />}
+        {indexPage && <Bio langKey={langKey} pageContext={props.pageContext} />}
       </div>
     </header>
   );

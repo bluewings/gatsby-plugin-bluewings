@@ -2,9 +2,15 @@ module.exports = {
   pathPrefix: '/gatsby-plugin-bluewings',
   // Customize your site metadata:
   siteMetadata: {
-    title: "개츠비 스타터 MDX",
+    title: [
+      ["ko", "개츠비 스타터 MDX"],
+      ["en", "Gatsby Starter MDX"],
+    ],
     author: "My Name",
-    description: "My site description...",
+    description: [
+      ["ko", "사이트 설명...\n사이트 설명..."],
+      ["en", "My site description...\nMy site description..."],
+    ],
     social: [{
         name: "twitter",
         url: "https://twitter.com/gatsbyjs",

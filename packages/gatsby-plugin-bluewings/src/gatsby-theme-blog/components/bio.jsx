@@ -12,7 +12,7 @@ import Image from 'gatsby-image';
 import { Styled, css, Flex } from 'theme-ui';
 import BioContent from 'gatsby-theme-blog/src/components/bio-content';
 
-const Bio = ({ post, langKey }) => {
+const Bio = ({ post, langKey, pageContext }) => {
   const data = useStaticQuery(bioQuery);
   const {
     site: {
@@ -48,7 +48,7 @@ const Bio = ({ post, langKey }) => {
         />
       )}
       <Styled.div>
-        <BioContent author={author} description={description} langKey={langKey} />
+        <BioContent author={author} description={description} pageContext={pageContext} langKey={langKey} />
       </Styled.div>
     </Flex>
   );

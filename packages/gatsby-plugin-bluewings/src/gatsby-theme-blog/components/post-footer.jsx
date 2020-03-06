@@ -14,7 +14,12 @@ const Footer = ({ previous, next, editUrl, langKey, langKeyDefault, pageContext 
       </Styled.p>
     )}
     <Styled.hr css={css({ mt: 3, mb: 3 })} />
-    <Bio post={true} langKey={langKey || (pageContext && pageContext.langKey)} langKeyDefault={langKeyDefault} />
+    <Bio
+      post={true}
+      pageContext={pageContext}
+      langKey={langKey || (pageContext && pageContext.langKey)}
+      langKeyDefault={langKeyDefault}
+    />
     {(previous || next) && (
       <Flex
         as="ul"

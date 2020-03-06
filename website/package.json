@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "gatsby": "^2.19.21",
-    "gatsby-plugin-bluewings": "^0.3.40",
+    "gatsby-plugin-bluewings": "^0.3.47",
     "gh-pages": "^2.2.0",
     "node-sass": "^4.13.1",
     "react": "^16.12.0",

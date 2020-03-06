@@ -8,6 +8,7 @@ import SEO from 'gatsby-theme-blog/src/components/seo';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import Translations from './translations';
 import Footer from 'gatsby-theme-blog/src/components/home-footer';
+import { getLocalText } from './util';
 
 const Post = ({ data, location, previous, next, pageContext }) => {
   const {
@@ -23,7 +24,7 @@ const Post = ({ data, location, previous, next, pageContext }) => {
   const slugId = useMemo(() => post.slug.replace(new RegExp('^/' + langKey + '/'), '/'), [post.slug, langKey]);
   return (
     <Layout location={location} title={title} langKey={langKey} pageContext={pageContext} maxWidth={max_width}>
-      <SEO title={post.title} description={post.excerpt} />
+      <SEO title={post.title} description={post.excerpt} pageContext={pageContext} />
       <main>
         <Styled.h1 css={css({ mt: 4 })}>{post.title}</Styled.h1>
         <Styled.p
