@@ -5,10 +5,11 @@ import { DiscussionEmbed } from 'disqus-react';
 import PostFooter from 'gatsby-theme-blog/src/components/post-footer';
 import Layout from 'gatsby-theme-blog/src/components/layout';
 import SEO from 'gatsby-theme-blog/src/components/seo';
+import { MDXProvider } from '@mdx-js/react';
 import { MDXRenderer } from 'gatsby-plugin-mdx';
 import Translations from './translations';
 import Footer from 'gatsby-theme-blog/src/components/home-footer';
-import { getLocalText } from './util';
+import components from '../../gatsby-plugin-theme-ui/components';
 
 const Post = ({ data, location, previous, next, pageContext }) => {
   const {
@@ -44,7 +45,9 @@ const Post = ({ data, location, previous, next, pageContext }) => {
           editUrl={editUrl}
           langKeyDefault={langKeyDefault}
         />
-        <MDXRenderer>{post.body}</MDXRenderer>
+        <MDXProvider components={components}>
+          <MDXRenderer>{post.body}</MDXRenderer>
+        </MDXProvider>
       </main>
       <PostFooter {...{ previous, next }} editUrl={editUrl} pageContext={pageContext} />
       {disqusShortname && <DiscussionEmbed shortname={disqusShortname} config={{ identifier: slugId, title: title }} />}

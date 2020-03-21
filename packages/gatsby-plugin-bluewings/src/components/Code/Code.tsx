@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 import cx from 'classnames';
 import { Styled, useColorMode } from 'theme-ui';
@@ -26,20 +26,32 @@ const Code = ({
   const [colorMode] = useColorMode();
   const colorModeClassName = colorMode === 'dark' ? colorMode : 'light';
   const lang = aliases[language] || language;
-  const overrideProps = useCallback(
-    (prev: any, type?: any) => {
-      const next = { ...prev };
-      delete next.style;
-      if (type === 'line' && highlightLines && highlightLines.indexOf(next.key) !== -1) {
-        return {
-          ...next,
-          className: [next.className, 'token-line-highlight'].filter(identity).join(' '),
-        };
+  const overrideProps = useCallback((prev: any, type?: any) => {
+    const next = { ...prev };
+    delete next.style;
+    if (type === 'line' && highlightLines && highlightLines.indexOf(next.key) !== -1) {
+      return {
+        ...next,
+        className: [next.className, 'token-line-highlight'].filter(identity).join(' '),
+      };
+    }
+    return next;
+  }, []);
+
+  const ref = useRef<any>();
+  const [initialColorModeClassName] = useState(colorModeClassName);
+  const lastClassName = useRef<any>(initialColorModeClassName);
+  useEffect(() => {
+    const pre = ref.current && ref.current.querySelector('pre');
+    if (pre) {
+      if (typeof lastClassName.current === 'string') {
+        pre.classList.remove(lastClassName.current);
       }
-      return next;
-    },
-    [highlightLines],
-  );
+      pre.classList.add(colorModeClassName);
+      lastClassName.current = colorModeClassName;
+    }
+  }, [colorModeClassName]);
+
   return (
     <div className={styles.root}>
       {clipboard && (
@@ -49,28 +61,54 @@ const Code = ({
           </Clipboard>
         </div>
       )}
-      {/* <Highlight {...defaultProps} {...props} code={codeString.trim()} language={lang} theme={undefined}> */}
-      <Highlight {...defaultProps} code={codeString.trim()} language={lang} theme={undefined}>
-        {({ className, style, tokens, getLineProps, getTokenProps }) => (
-          <Styled.pre
-            className={cx(outerClassName, className, colorModeClassName, lineWrap && styles.lineWrap)}
-            style={style}
-          >
-            {tokens.map((line, i) => (
-              <Line
-                overrideProps={overrideProps}
-                getLineProps={getLineProps}
-                getTokenProps={getTokenProps}
-                line={line}
-                i={i}
-              />
-            ))}
-          </Styled.pre>
-        )}
-      </Highlight>
+      <div ref={ref}>
+        <HighlightWrap
+          codeString={codeString}
+          lang={lang}
+          outerClassName={outerClassName}
+          colorModeClassName={initialColorModeClassName}
+          lineWrap={lineWrap}
+          overrideProps={overrideProps}
+        />
+      </div>
     </div>
   );
 };
+
+const HighlightWrap = React.memo(
+  ({ codeString, lang, outerClassName, colorModeClassName, lineWrap, overrideProps }: any) => (
+    <Highlight {...defaultProps} code={codeString.trim()} language={lang} theme={undefined}>
+      {({ className, style, tokens, getLineProps, getTokenProps }) => (
+        <Styled.pre
+          className={cx(outerClassName, colorModeClassName, className, lineWrap && styles.lineWrap)}
+          style={style}
+        >
+          <Tokens
+            tokens={tokens}
+            overrideProps={overrideProps}
+            getLineProps={getLineProps}
+            getTokenProps={getTokenProps}
+          />
+        </Styled.pre>
+      )}
+    </Highlight>
+  ),
+);
+
+const Tokens = React.memo(({ tokens, overrideProps, getLineProps, getTokenProps }: any) => (
+  <>
+    {tokens.map((line: any, i: number) => (
+      <Line
+        overrideProps={overrideProps}
+        getLineProps={getLineProps}
+        getTokenProps={getTokenProps}
+        line={line}
+        i={i}
+        key={i}
+      />
+    ))}
+  </>
+));
 
 const Line = React.memo(({ overrideProps, getLineProps, getTokenProps, line, i }: any) => (
   <div {...overrideProps(getLineProps({ line, key: i }), 'line')}>
@@ -80,4 +118,4 @@ const Line = React.memo(({ overrideProps, getLineProps, getTokenProps, line, i }
   </div>
 ));
 
-export default Code;
+export default React.memo(Code);
