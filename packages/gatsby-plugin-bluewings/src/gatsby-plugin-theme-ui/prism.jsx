@@ -1,4 +1,5 @@
 // https://github.com/system-ui/theme-ui/blob/master/packages/prism/src/index.js
+import React from 'react';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 import { Styled, useColorMode } from 'theme-ui';
 
