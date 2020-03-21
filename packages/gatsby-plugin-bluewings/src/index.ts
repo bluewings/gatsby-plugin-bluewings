@@ -3,6 +3,7 @@ import Column from './components/Grid/Column';
 import Context from './components/Context';
 import Scrollama from './components/Scrollama';
 import JsonTree from './components/JsonTree';
+import Code from './components/Code';
 import CodeWave from './components/CodeWave';
 import { Provider as DataProvider } from './utils/context';
 
@@ -12,4 +13,4 @@ Bluewings.Row = Row;
 Bluewings.Column = Column;
 Bluewings.DataProvider = DataProvider;
 
-export { Bluewings, Context, Scrollama, JsonTree, CodeWave };
+export { Bluewings, Context, Scrollama, JsonTree, CodeWave, Code };

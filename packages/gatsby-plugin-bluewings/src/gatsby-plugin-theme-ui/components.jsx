@@ -1,12 +1,12 @@
 import React from 'react';
-import { Styled, css } from 'theme-ui';
+import { Styled } from 'theme-ui';
 import rangeParser from 'parse-numeric-range';
-import { Prism } from './prism';
+import { Code } from 'gatsby-plugin-bluewings';
 
 const Pre = (preProps) => {
   const childProps = { ...(preProps.children && preProps.children.props) };
+  let className = childProps.className || '';
   if (childProps.mdxType === 'code') {
-    let className = childProps.className;
     let highlightLines;
     if (typeof className === 'string') {
       const matched = className.trim().match(/^language-([^{}]+)(\{(.+)\}){0,1}$/);
@@ -22,7 +22,16 @@ const Pre = (preProps) => {
         }
       }
     }
-    return <Prism {...childProps} className={className} highlightLines={highlightLines} />;
+    const [language] = className.replace(/language-/, '').split(' ');
+    return (
+      <Code
+        codeString={childProps.children}
+        language={language}
+        className={className}
+        highlightLines={highlightLines}
+        {...childProps}
+      />
+    );
   }
   return <Styled.pre {...preProps} />;
 };

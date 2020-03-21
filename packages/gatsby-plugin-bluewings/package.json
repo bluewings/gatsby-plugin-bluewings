@@ -1,6 +1,6 @@
 {
   "name": "gatsby-plugin-bluewings",
-  "version": "0.3.47",
+  "version": "0.3.54",
   "author": {
     "name": "Sung Won Cha",
     "email": "mygenie3@naver.com"
@@ -39,7 +39,9 @@
     "parse-numeric-range": "0.0.2",
     "ptz-i18n": "^1.0.0",
     "ramda": "^0.27.0",
+    "react-clipboard.js": "^2.0.16",
     "react-json-tree": "^0.11.2",
+    "react-octicon": "^3.0.1",
     "react-use": "^13.26.2",
     "remark-slug": "^5.1.2",
     "scrollama": "^2.2.0",

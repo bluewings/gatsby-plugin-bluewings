@@ -1,0 +1,27 @@
+.root {
+  position: relative;
+  .clipboard {
+    position: absolute;
+    top: 0;
+    right: 0;
+    // opacity: 0.5;
+    margin-right: -1.3125rem;
+    > button {
+      border: none;
+      background: none;
+      color: #ccc;
+      cursor: pointer;
+    }
+  }
+  &:hover {
+    .clipboard {
+      opacity: 1;
+    }
+  }
+}
+.lineWrap {
+  width: 100%;
+  :global(.token-line) {
+    white-space: pre-wrap;
+  }
+}
