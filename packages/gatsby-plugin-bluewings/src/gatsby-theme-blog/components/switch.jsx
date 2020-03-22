@@ -1,5 +1,5 @@
 import React, { useMemo, useRef } from 'react';
-import { css, useColorMode, Styled } from 'theme-ui';
+import { css, useColorMode } from 'theme-ui';
 
 const SWITCH_SIZE = 60;
 
@@ -66,6 +66,8 @@ function Switch({ border = false }) {
         >
           <span
             className="sun"
+            role="img"
+            aria-label="sun"
             css={css({
               position: 'absolute',
               pointerEvents: 'none',
@@ -82,6 +84,8 @@ function Switch({ border = false }) {
           </span>
           <span
             className="moon"
+            role="img"
+            aria-label="moon"
             css={css({
               position: 'absolute',
               pointerEvents: 'none',

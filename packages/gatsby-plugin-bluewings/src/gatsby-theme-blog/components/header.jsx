@@ -60,7 +60,7 @@ export default ({ children, title, maxWidth, indexPage, langKey, langKeyDefault,
   const rootPath = useMemo(() => {
     const { langKey, langKeyDefault } = props.pageContext || {};
     return langKey === langKeyDefault ? '/' : `/${langKey}/`;
-  }, [title, props.pageContext]);
+  }, [props.pageContext]);
 
   return (
     <header>

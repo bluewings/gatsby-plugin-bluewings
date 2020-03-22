@@ -14,14 +14,7 @@ const aliases: any = {
   sh: 'bash',
 };
 
-const Code = ({
-  codeString,
-  language,
-  className: outerClassName,
-  highlightLines,
-  lineWrap,
-  clipboard,
-}: any) => {
+const Code = ({ codeString, language, className: outerClassName, highlightLines, lineWrap, clipboard }: any) => {
   const [colorMode] = useColorMode();
   const colorModeClassName = colorMode === 'dark' ? colorMode : 'light';
   const lang = aliases[language] || language;
