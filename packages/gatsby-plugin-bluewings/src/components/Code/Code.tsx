@@ -21,7 +21,6 @@ const Code = ({
   highlightLines,
   lineWrap,
   clipboard,
-  ...props
 }: any) => {
   const [colorMode] = useColorMode();
   const colorModeClassName = colorMode === 'dark' ? colorMode : 'light';
