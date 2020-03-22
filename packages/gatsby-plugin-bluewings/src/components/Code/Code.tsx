@@ -26,17 +26,20 @@ const Code = ({
   const [colorMode] = useColorMode();
   const colorModeClassName = colorMode === 'dark' ? colorMode : 'light';
   const lang = aliases[language] || language;
-  const overrideProps = useCallback((prev: any, type?: any) => {
-    const next = { ...prev };
-    delete next.style;
-    if (type === 'line' && highlightLines && highlightLines.indexOf(next.key) !== -1) {
-      return {
-        ...next,
-        className: [next.className, 'token-line-highlight'].filter(identity).join(' '),
-      };
-    }
-    return next;
-  }, []);
+  const overrideProps = useCallback(
+    (prev: any, type?: any) => {
+      const next = { ...prev };
+      delete next.style;
+      if (type === 'line' && highlightLines && highlightLines.indexOf(next.key) !== -1) {
+        return {
+          ...next,
+          className: [next.className, 'token-line-highlight'].filter(identity).join(' '),
+        };
+      }
+      return next;
+    },
+    [highlightLines],
+  );
 
   const ref = useRef<any>();
   const [initialColorModeClassName] = useState(colorModeClassName);

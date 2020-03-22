@@ -22,8 +22,8 @@ function reducer(state: any, action: any) {
   const { type, payload, indexToStage, stageProgress } = action;
   switch (type) {
     case STEP_ENTER: {
-      const { element, index, direction } = payload;
-      const progress = direction === 'down' ? 0 : 1;
+      const { element, index: index_, direction } = payload;
+      const progress_ = direction === 'down' ? 0 : 1;
       const elRect = element.getBoundingClientRect();
       const top = elRect.top + document.documentElement.scrollTop || document.body.scrollTop;
       const left = elRect.left + document.documentElement.scrollLeft || document.body.scrollLeft;
@@ -35,17 +35,17 @@ function reducer(state: any, action: any) {
         right: left + elRect.width,
         bottom: top + elRect.height,
       };
-      const [stage, stageIndex] = indexToStage(index);
+      const [stage_, stageIndex_] = indexToStage(index_);
       return {
         ...state,
-        index,
-        progress,
+        index: index_,
+        progress: progress_,
         rect,
-        index_: index,
-        progress_: progress,
+        index_: index_,
+        progress_: progress_,
         rect_: rect,
-        stage,
-        stageProgress: stageProgress(index, stageIndex, progress),
+        stage: stage_,
+        stageProgress: stageProgress(index_, stageIndex_, progress_),
       };
     }
     case STEP_PROGRESS: {
@@ -72,12 +72,14 @@ function reducer(state: any, action: any) {
 const DEFAULT_OFFSET = 0.5;
 
 function useScrollama(props: any) {
-  const step = useMemo(() => props.step || '', [props.step || '']);
+  const step = props.step || '';
+
+  const _offset = props.offset || '';
 
   const offset: any = useMemo(() => {
-    const value = Number(props.offset);
+    const value = Number(_offset);
     return isNaN(value) ? DEFAULT_OFFSET : value;
-  }, [props.offset || '']);
+  }, [_offset]);
 
   const progress = !!props.progress;
 
@@ -154,7 +156,7 @@ function useScrollama(props: any) {
       };
     }
     return () => null;
-  }, [step, offset, progress]);
+  }, [step, offset, progress, dispatch]);
 
   return state;
 }

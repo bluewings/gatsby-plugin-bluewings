@@ -25,7 +25,7 @@ const reducer = (state: any, action: any) => {
   return state;
 };
 
-function DataProvider({ children }: any) {
+const DataProvider = ({ children }: any) => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const value = useMemo(() => {
     return {
@@ -40,7 +40,7 @@ function DataProvider({ children }: any) {
   }, [state, dispatch]);
 
   return <DataContext.Provider value={value}>{value && children}</DataContext.Provider>;
-}
+};
 
 const Context = DataContext;
 const Provider = DataProvider;
