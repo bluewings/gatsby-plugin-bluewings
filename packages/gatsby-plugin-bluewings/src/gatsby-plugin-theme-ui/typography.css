@@ -3,10 +3,19 @@ html {
   box-sizing: border-box;
 }
 
+:root {
+}
+
 body {
   margin: 0;
   transition: background-color 0.35s ease-out, color 0.35s ease-out;
   -webkit-font-smoothing: antialiased;
+  --border-color: hsla(0, 0%, 0%, 0.2);
+  --translation-bg: rgba(0, 0, 0, 0.09);
+}
+body.dark {
+  --border-color: hsla(0, 0%, 100%, 0.2);
+  --translation-bg: rgba(255, 255, 255, 0.09);
 }
 
 * {
