@@ -26,7 +26,7 @@ module.exports = {
     {
       resolve: "gatsby-plugin-bluewings",
       options: {
-        langKeyDefault: "en",
+        langKeyDefault: "ko",
         editOnGithub: {
           url: "https://github.com/bluewings/gatsby-plugin-bluewings",
           directory: "website",

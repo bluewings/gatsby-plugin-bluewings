@@ -1,9 +1,16 @@
 /* https://github.com/KyleAMathews/typefaces/blob/master/packages/montserrat/index.css */
+html {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
   transition: background-color 0.35s ease-out, color 0.35s ease-out;
   -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: inherit;
 }
 
 a {
