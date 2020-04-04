@@ -1,10 +1,11 @@
 const grid = {
   import: [`import { Bluewings } from 'gatsby-plugin-bluewings'`],
-  open: ({ isFirst, args, params: { layoutFixed } }: any) => ({
+  open: ({ isFirst, args, params: { layoutFixed, xs } }: any) => ({
     type: 'jsx',
-    value: `${isFirst ? '<Bluewings.Row>' : ''}<Bluewings.Column args={${JSON.stringify(
-      args,
-    )}} layoutFixed={${!!layoutFixed}}>`,
+    value: `${isFirst ? '<Bluewings.Row>' : ''}<Bluewings.Column args={${JSON.stringify(args)}} 
+    layoutFixed={${!!layoutFixed}} 
+    xs={${JSON.stringify(xs)}}
+    >`,
   }),
   close: ({ finale }: any) => ({
     type: 'jsx',

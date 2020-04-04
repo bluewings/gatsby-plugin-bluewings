@@ -1,26 +1,36 @@
 import React, { useMemo } from 'react';
 import { useMeasure } from 'react-use';
+import cx from 'classnames';
 import styles from '../Grid.module.scss';
 
 const identity = (e: any) => e;
 
 function Column(props: any) {
-  const { args, layoutFixed } = props;
+  const { args, layoutFixed, xs } = props;
 
   const className = useMemo(
     () => [styles.grid, ...args.map((e: string) => styles[`grid_${e}`])].filter(identity).join(' '),
     [args],
   );
 
+  const className_xs = useMemo(() => {
+    if (xs === true) {
+      return [styles['grid_xs'], ...args.map((e: string) => styles[`grid_xs_${e}`])].filter(identity).join(' ');
+    } else if (typeof xs === 'string' && xs.match(/^[\d]+$/)) {
+      return styles[`grid_xs_${xs}`];
+    }
+    return null;
+  }, [args, xs]);
+
   if (layoutFixed) {
     return (
-      <div className={className}>
+      <div className={cx(className, className_xs)}>
         <LayoutFixed>{props.children}</LayoutFixed>
       </div>
     );
   }
 
-  return <div className={className}>{props.children}</div>;
+  return <div className={cx(className, className_xs)}>{props.children}</div>;
 }
 
 function LayoutFixed(props: any) {
