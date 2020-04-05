@@ -24,6 +24,9 @@ module.exports = (options) => {
             {
               resolve: 'gatsby-remark-smartypants',
             },
+            {
+              resolve: 'gatsby-remark-import-code',
+            },
           ],
           remarkPlugins: [require('remark-slug')],
         },
