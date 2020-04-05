@@ -26,6 +26,7 @@
     "deepmerge": "^4.2.2",
     "disqus-react": "^1.0.7",
     "folktale": "^2.3.2",
+    "font-awesome": "^4.7.0",
     "gatsby-plugin-google-fonts": "^1.0.1",
     "gatsby-plugin-mdx": "^1.0.73",
     "gatsby-plugin-sass": "^2.1.29",
