@@ -9,10 +9,10 @@ const Footer = ({ socialLinks = [], marginTop }) => (
       pt: 3,
     })}
   >
-    © {new Date().getFullYear()}, Powered by
-    {` `}
-    <Styled.a href="https://www.gatsbyjs.org">Gatsby</Styled.a>
-    {` `}&bull;{` `}
+    {/* © {new Date().getFullYear()}, Powered by
+    {` `} */}
+    {/* <Styled.a href="https://www.gatsbyjs.org">Gatsby</Styled.a>
+    {` `}&bull;{` `} */}
     {socialLinks.map((platform, i, arr) => (
       <Fragment key={platform.url}>
         <Styled.a href={platform.url} target="_blank" rel="noopener noreferrer">
