@@ -6,7 +6,7 @@ import styles from '../Grid.module.scss';
 const identity = (e: any) => e;
 
 function Column(props: any) {
-  const { args, layoutFixed, xs } = props;
+  const { args, layoutFixed, xs, style } = props;
 
   const className = useMemo(
     () => [styles.grid, ...args.map((e: string) => styles[`grid_${e}`])].filter(identity).join(' '),
@@ -24,13 +24,17 @@ function Column(props: any) {
 
   if (layoutFixed) {
     return (
-      <div className={cx(className, className_xs)}>
+      <div className={cx(className, className_xs)} style={style}>
         <LayoutFixed>{props.children}</LayoutFixed>
       </div>
     );
   }
 
-  return <div className={cx(className, className_xs)}>{props.children}</div>;
+  return (
+    <div className={cx(className, className_xs)} style={style}>
+      {props.children}
+    </div>
+  );
 }
 
 function LayoutFixed(props: any) {

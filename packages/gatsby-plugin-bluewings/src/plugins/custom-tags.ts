@@ -1,10 +1,11 @@
 const grid = {
   import: [`import { Bluewings } from 'gatsby-plugin-bluewings'`],
-  open: ({ isFirst, args, params: { layoutFixed, xs } }: any) => ({
+  open: ({ isFirst, args, params: { layoutFixed, xs }, style }: any) => ({
     type: 'jsx',
     value: `${isFirst ? '<Bluewings.Row>' : ''}<Bluewings.Column args={${JSON.stringify(args)}} 
     layoutFixed={${!!layoutFixed}} 
     xs={${JSON.stringify(xs)}}
+    style={${JSON.stringify(style)}}
     >`,
   }),
   close: ({ finale }: any) => ({
@@ -15,9 +16,13 @@ const grid = {
 
 const section = {
   import: null,
-  open: ({ className }: any) => ({
+  open: ({ className, dataProps, style }: any) => ({
     type: 'jsx',
-    value: `<section className="${className}">`,
+    value: `<section
+      ${className ? `className="${className}"` : ''}
+      ${dataProps} 
+      style={${JSON.stringify(style)}}
+    >`,
   }),
   close: {
     type: 'jsx',

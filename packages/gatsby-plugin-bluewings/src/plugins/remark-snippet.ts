@@ -151,6 +151,20 @@ const parseAnnot = (node: any, context: any) => {
       //   tag = GRID_WRAPPER;
       // }
 
+      const styleKeys = ['background', 'color', 'overflow', 'minHeight', 'maxHeight', 'height'];
+
+      const style = Object.keys(params)
+        .filter((e) => styleKeys.indexOf(e) !== -1)
+        .reduce((accum, key) => ({ ...accum, [key]: params[key] }), {});
+
+      const dataProps = Object.entries(
+        Object.keys(params)
+          .filter((e) => e.search(/^@/) !== -1)
+          .reduce((accum, key) => ({ ...accum, [key.replace(/^@/, 'data-')]: params[key] }), {}),
+      )
+        .map(([k, v]) => `${k}="${v}"`)
+        .join(' ');
+
       return {
         tag,
         open,
@@ -160,6 +174,8 @@ const parseAnnot = (node: any, context: any) => {
         className,
         args,
         params,
+        dataProps,
+        style,
       };
     }
   }
