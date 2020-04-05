@@ -24,21 +24,27 @@ let theme = merge(blogTheme, {
     },
     h1: {
       mt: 4,
+      wordBreak: 'keep-all',
     },
     h2: {
       mt: 4,
+      wordBreak: 'keep-all',
     },
     h3: {
       mt: 4,
+      wordBreak: 'keep-all',
     },
     h4: {
       mt: 4,
+      wordBreak: 'keep-all',
     },
     h5: {
       mt: 4,
+      wordBreak: 'keep-all',
     },
     h6: {
       mt: 4,
+      wordBreak: 'keep-all',
     },
     hr: {
       mt: 4,
