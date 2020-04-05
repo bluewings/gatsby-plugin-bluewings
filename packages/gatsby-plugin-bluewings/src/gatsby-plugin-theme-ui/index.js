@@ -70,6 +70,25 @@ let theme = merge(blogTheme, {
       lineHeight: '1.75rem',
       fontFamily: `'Merriweather','Georgia',serif`,
       fontWeight: 600,
+      code: {
+        paddingY: `0.05em`,
+        paddingX: `0.2em`,
+        fontSize: 'inherit !important',
+      },
+    },
+    inlineCode: {
+      borderRadius: `0.3em`,
+      color: `secondary`,
+      paddingY: `0.2em`,
+      paddingX: `0.4em`,
+      backgroundColor: 'highlight',
+      fontSize: '0.85rem !important',
+    },
+    code: {
+      paddingY: `0.2em`,
+      paddingX: `0.4em`,
+      backgroundColor: 'highlight',
+      fontSize: '0.85rem',
     },
     pre: {
       mb: '1.75rem',

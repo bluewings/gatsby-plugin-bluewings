@@ -13,6 +13,7 @@ body {
   --border-color: hsla(0, 0%, 0%, 0.2);
   --translation-bg: rgba(0, 0, 0, 0.09);
 }
+
 body.dark {
   --border-color: hsla(0, 0%, 100%, 0.2);
   --translation-bg: rgba(255, 255, 255, 0.09);
@@ -35,6 +36,12 @@ select,
 textarea {
   font: inherit;
   margin: 0;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace;
+  font-style: normal;
+  font-size: 0.85rem;
 }
 
 /* montserrat-600normal - latin */
