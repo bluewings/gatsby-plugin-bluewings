@@ -54,6 +54,12 @@ let theme = merge(blogTheme, {
       color: '#007acc',
       textDecoration: 'none',
     },
+    ol: {
+      marginLeft: ['1.75rem', 0],
+    },
+    ul: {
+      marginLeft: ['1.75rem', 0],
+    },
     blockquote: {
       marginLeft: ['-1.3125rem', '-1.75rem'],
       marginRight: [0, '1.75rem'],
