@@ -13,18 +13,20 @@ const Footer = ({ socialLinks = [], marginTop }) => (
     {` `} */}
     {/* <Styled.a href="https://www.gatsbyjs.org">Gatsby</Styled.a>
     {` `}&bull;{` `} */}
-    {socialLinks.map((platform, i, arr) => (
-      <Fragment key={platform.url}>
-        <Styled.a href={platform.url} target="_blank" rel="noopener noreferrer">
-          {platform.name}
-        </Styled.a>
-        {arr.length - 1 !== i && (
-          <Fragment>
-            {` `}&bull;{` `}
-          </Fragment>
-        )}
-      </Fragment>
-    ))}
+    {socialLinks
+      .filter((platform) => platform.url !== 'https://github.com/gatsbyjs')
+      .map((platform, i, arr) => (
+        <Fragment key={platform.url}>
+          <Styled.a href={platform.url} target="_blank" rel="noopener noreferrer">
+            {platform.name}
+          </Styled.a>
+          {arr.length - 1 !== i && (
+            <Fragment>
+              {` `}&bull;{` `}
+            </Fragment>
+          )}
+        </Fragment>
+      ))}
   </footer>
 );
 
