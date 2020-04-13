@@ -18,17 +18,7 @@ const Title = ({ children, indexPage, rootPath }) => {
           wordBreak: 'keep-all',
         })}
       >
-        <Styled.a
-          as={Link}
-          css={css({
-            color: `inherit`,
-            boxShadow: `none`,
-            textDecoration: `none`,
-          })}
-          to={rootPath}
-        >
-          {children}
-        </Styled.a>
+        {children}
       </Styled.h1>
     );
   } else {

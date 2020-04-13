@@ -26,6 +26,10 @@ a {
   text-decoration: none;
 }
 
+body a:hover {
+  color: #007acc;
+}
+
 button,
 input,
 optgroup,
