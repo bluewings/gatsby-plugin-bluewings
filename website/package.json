@@ -10,7 +10,7 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
-    "gatsby": "^2.19.21",
+    "gatsby": "^2.32.13",
     "gatsby-plugin-bluewings": "^0.3.55",
     "gh-pages": "^2.2.0",
     "node-sass": "^4.13.1",
